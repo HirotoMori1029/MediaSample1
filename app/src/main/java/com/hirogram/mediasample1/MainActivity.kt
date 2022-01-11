@@ -2,10 +2,12 @@ package com.hirogram.mediasample1
 
 import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val loopSwitch = findViewById<SwitchMaterial>(R.id.swLoop)
+        loopSwitch.setOnCheckedChangeListener(LoopSwitchChangedListener())
 
         _player = MediaPlayer()
         val mediaFileUriStr = "android.resource://${packageName}/${R.raw.rain}"
@@ -41,8 +46,18 @@ class MainActivity : AppCompatActivity() {
 
     private inner class PlayerCompletionListener : MediaPlayer.OnCompletionListener {
         override fun onCompletion(mp: MediaPlayer?) {
-            val btPlay = findViewById<Button>(R.id.btPlay)
-            btPlay.setText(R.string.bt_play_play)
+            _player?.let {
+                if (it.isLooping) {
+                    val btPlay = findViewById<Button>(R.id.btPlay)
+                    btPlay.setText(R.string.bt_play_play)
+                }
+            }
+        }
+    }
+
+    private inner class LoopSwitchChangedListener : CompoundButton.OnCheckedChangeListener {
+        override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+            _player?.isLooping = isChecked
         }
     }
 

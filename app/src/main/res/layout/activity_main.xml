@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
     <Button
@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:onClick="onBackButtonClick"
-        android:text="@string/bt_back"
-        style="?android:attr/buttonBarButtonStyle" />
+        android:text="@string/bt_back" />
 
     <Button
         android:id="@+id/btPlay"
@@ -26,8 +25,7 @@
         android:layout_weight="1"
         android:enabled="false"
         android:onClick="onPlayButtonClick"
-        android:text="@string/bt_play_play"
-        style="?android:attr/buttonBarButtonStyle" />
+        android:text="@string/bt_play_play" />
 
     <Button
         android:id="@+id/btForward"
@@ -35,8 +33,7 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:onClick="onForwardButtonClick"
-        android:text="@string/bt_forward"
-        style="?android:attr/buttonBarButtonStyle" />
+        android:text="@string/bt_forward" />
 
     </LinearLayout>
 
@@ -44,6 +41,8 @@
         android:id="@+id/swLoop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sw_loop"/>
+        android:text="@string/sw_loop" />
+
+
 
 </LinearLayout>
