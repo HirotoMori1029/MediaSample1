@@ -59,6 +59,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun onBackButtonClick(view: View) {
+        _player?.seekTo(0)
+    }
+
+    fun onForwardButtonClick(view: View) {
+        _player?.let {
+            val duration = it.duration
+            it.seekTo(duration)
+            if (!it.isPlaying) {
+                it.start()
+            }
+        }
+    }
+
     override fun onDestroy() {
         _player?.let {
             if (it.isPlaying) {
